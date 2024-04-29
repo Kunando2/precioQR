@@ -86,3 +86,8 @@ tbody tr:nth-child(4) {
   width: 20%;
   height: 20%;
 }
+
+.table-container {
+  margin-top: 10px; /* Puedes ajustar el margen según sea necesario */
+  overflow-x: auto;
+}
