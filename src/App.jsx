@@ -6,14 +6,9 @@ import MostrarListaComerciante from './componentes/vistaListas/ListaComerciante'
 import MostrarListaReventa from './componentes/vistaListas/ListaReventa';
 import ErrorBoundary from './componentes/ErrorBoundary';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
-const CargaExcelLink = () => (
-  <li className="nav-item">
- 
-  </li>
-);
-
-function App() {
+const App = () => {
   const [consumoPersonalData, setConsumoPersonalData] = useState(null);
   const [comercianteData, setComercianteData] = useState(null);
   const [reventaData, setReventaData] = useState(null);
@@ -37,7 +32,7 @@ function App() {
   }, []);
 
   const handleFileUpload = (newJsonData, listaType) => {
-    // Actualiza el estado con los nuevos datos según el tipo de lista
+    // Actualizar el estado con los nuevos datos según el tipo de lista
     if (listaType === 'consumoPersonal') {
       setConsumoPersonalData(newJsonData);
       localStorage.setItem('consumoPersonalData', JSON.stringify({ jsonData: newJsonData }));
@@ -55,58 +50,45 @@ function App() {
       <Router>
         <div className="App">
           <h1 className="text-center mt-3">
-
-          <div className="text-center mt-3">
-  <h1>
-    <img
-      src="https://www.golomax.com.ar/public/assets/img/logo.png"
-      alt="Logo de Golomax"
-      className="ml-2 img-fluid"  // Añade la clase img-fluid para hacer la imagen responsiva
-    />
-  </h1>
-</div>
-   </h1>
+            <img
+              src="https://www.golomax.com.ar/public/assets/img/logo.png"
+              alt="Logo de Golomax"
+              className="ml-2 img-fluid"
+            />
+          </h1>
 
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container-fluid">
-    <div className="navbar-header">
-      {/* <Link className="navbar-brand" to="/">Logo</Link> */}
-    </div>
-    <div className="navbar-nav ml-auto">
-      <Link to="/mostrar/consumoPersonal" className="nav-link">
-        <button type="button" className="btn btn-warning">
-          Lista Consumo Personal
-        </button>
-      </Link>
-    </div>
-    <div className="navbar-nav mx-auto">
-      <Link to="/mostrar/comerciante" className="nav-link">
-        <button type="button" className="btn btn-warning">
-          Lista Comerciante
-        </button>
-      </Link>
-    </div>
-    <div className="navbar-nav mr-auto">
-      <Link to="/mostrar/reventa" className="nav-link">
-        <button type="button" className="btn btn-warning">
-          Lista Reventa
-        </button>
-      </Link>
-    </div>
-  </div>
-</nav>
-
-
-
-
-
+            <div className="container-fluid">
+              <div className="navbar-header"></div>
+              <div className="navbar-nav ml-auto">
+                <Link to="/mostrar/consumoPersonal" className="nav-link">
+                  <button type="button" className="btn btn-warning">
+                    Lista Consumo Personal
+                  </button>
+                </Link>
+              </div>
+              <div className="navbar-nav mx-auto">
+                <Link to="/mostrar/comerciante" className="nav-link">
+                  <button type="button" className="btn btn-warning">
+                    Lista Comerciante
+                  </button>
+                </Link>
+              </div>
+              <div className="navbar-nav mr-auto">
+                <Link to="/mostrar/reventa" className="nav-link">
+                  <button type="button" className="btn btn-warning">
+                    Lista Reventa
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </nav>
 
           <Routes>
             <Route
               path="/"
               element={
                 <>
-                  <CargaExcelLink />
                   <Cargadeexcel onFileUpload={handleFileUpload} />
                 </>
               }
@@ -128,6 +110,6 @@ function App() {
       </Router>
     </ErrorBoundary>
   );
-}
+};
 
 export default App;
